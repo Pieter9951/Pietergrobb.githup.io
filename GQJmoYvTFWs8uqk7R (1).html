@@ -1,0 +1,553 @@
+<html><head><base href="https://example.com">
+<title>MANNATECH - Share Your Success Story</title>
+<style>
+:root {
+  --primary: #2F855A;
+  --secondary: #48BB78;
+  --accent: #9AE6B4;
+  --background: #F0FFF4;
+  --card-bg: #FFFFFF;
+  --text: #2D3748;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+}
+
+.header {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%239AE6B4' fill-opacity='0.2' d='M0,96L48,122.7C96,149,192,203,288,208C384,213,480,171,576,160C672,149,768,171,864,176C960,181,1056,171,1152,154.7C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+  background-size: cover;
+  opacity: 0.3;
+}
+
+.logo {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: -2rem auto 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.nav-btn {
+  background: var(--card-bg);
+  color: var(--primary);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-weight: 600;
+}
+
+.nav-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.nav-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+.upload-section, .view-section {
+  display: none;
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.section-active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.testimonial-card {
+  background: var(--card-bg);
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  border: 1px solid var(--accent);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+}
+
+.testimonial-card h4 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--primary);
+}
+
+input, textarea, select {
+  padding: 0.8rem;
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.2);
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+button:hover {
+  background: var(--secondary);
+  transform: translateY(-2px);
+}
+
+.media-preview {
+  margin-top: 1rem;
+  border: 2px dashed var(--accent);
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: 10px;
+  background: var(--background);
+}
+
+h3 {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+small {
+  color: var(--secondary);
+  font-weight: 500;
+}
+
+.delete-btn {
+  background: #e53e3e;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.password-input {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.delete-password {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+.confirm-delete {
+  background: #e53e3e;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.cancel-delete {
+  background: #718096;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.toggle-delete {
+  background: #718096;
+  margin-bottom: 1rem;
+}
+
+.filter-section {
+  margin-bottom: 2rem;
+}
+
+.product-filter {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.8rem;
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  background: var(--card-bg);
+  color: var(--text);
+}
+
+.product-filter:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.2);
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">MANNATECH</div>
+  <h2>Share Your Success Story</h2>
+</div>
+
+<div class="container">
+  <div class="nav-buttons">
+    <button class="nav-btn active" data-section="upload">Submit Testimonial</button>
+    <button class="nav-btn" data-section="view">View Testimonials</button>
+  </div>
+
+  <div class="upload-section section-active" id="uploadSection">
+    <h3>Submit Your Testimonial</h3>
+    <form class="upload-form" id="testimonialForm">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="product">Product</label>
+        <select id="product" required>
+          <option value="">Select a Product</option>
+          <option value="Manapol">Manapol</option>
+          <option value="Advanced Ambrotose">Advanced Ambrotose</option>
+          <option value="Ambrotose Complex">Ambrotose Complex</option>
+          <option value="NutriVerus">NutriVerus</option>
+          <option value="PhytoMatrix">PhytoMatrix</option>
+          <option value="Ambrotose AO">Ambrotose AO</option>
+          <option value="PLUS">PLUS</option>
+          <option value="Catalyst">Catalyst</option>
+          <option value="MannaBears">MannaBears</option>
+          <option value="GlycoCafe">GlycoCafe</option>
+          <option value="Omega-3">Omega-3 with Vitamin D3</option>
+          <option value="ImmunoSTART">ImmunoSTART</option>
+          <option value="Manna-C">Manna-C</option>
+          <option value="BounceBack">BounceBack</option>
+          <option value="CardioBALANCE">CardioBALANCE</option>
+          <option value="GI-ProBalance">GI-ProBalance</option>
+          <option value="GI-Zyme">GI-Zyme</option>
+          <option value="MannaCLEANSE">MannaCLEANSE</option>
+          <option value="TruPLENISH">TruPLENISH</option>
+          <option value="EM-PACT">EM-PACT</option>
+          <option value="OsoLean">OsoLean</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="testimonialType">Testimonial Type</label>
+        <select id="testimonialType">
+          <option value="text">Written</option>
+          <option value="audio">Audio</option>
+          <option value="video">Video</option>
+        </select>
+      </div>
+      
+      <div class="form-group" id="textInput">
+        <label for="written">Your Story</label>
+        <textarea id="written" rows="4"></textarea>
+      </div>
+      
+      <div class="form-group" id="mediaInput" style="display: none;">
+        <label for="mediaFile">Upload File</label>
+        <input type="file" id="mediaFile">
+        <div class="media-preview" id="preview"></div>
+      </div>
+      
+      <button type="submit">Share Your Story</button>
+    </form>
+  </div>
+  
+  <div class="view-section" id="viewSection">
+    <h3>Success Stories</h3>
+    <div class="filter-section">
+      <select id="productFilter" class="product-filter">
+        <option value="">All Products</option>
+        <option value="Manapol">Manapol</option>
+        <option value="Advanced Ambrotose">Advanced Ambrotose</option>
+        <option value="Ambrotose Complex">Ambrotose Complex</option>
+        <option value="NutriVerus">NutriVerus</option>
+        <option value="PhytoMatrix">PhytoMatrix</option>
+        <option value="Ambrotose AO">Ambrotose AO</option>
+        <option value="PLUS">PLUS</option>
+        <option value="Catalyst">Catalyst</option>
+        <option value="MannaBears">MannaBears</option>
+        <option value="GlycoCafe">GlycoCafe</option>
+        <option value="Omega-3">Omega-3 with Vitamin D3</option>
+        <option value="ImmunoSTART">ImmunoSTART</option>
+        <option value="Manna-C">Manna-C</option>
+        <option value="BounceBack">BounceBack</option>
+        <option value="CardioBALANCE">CardioBALANCE</option>
+        <option value="GI-ProBalance">GI-ProBalance</option>
+        <option value="GI-Zyme">GI-Zyme</option>
+        <option value="MannaCLEANSE">MannaCLEANSE</option>
+        <option value="TruPLENISH">TruPLENISH</option>
+        <option value="EM-PACT">EM-PACT</option>
+        <option value="OsoLean">OsoLean</option>
+      </select>
+    </div>
+    <button class="toggle-delete">Toggle Delete Mode</button>
+    <div class="testimonial-grid" id="testimonialGrid">
+      <div class="testimonial-card">
+        <h4>John Doe</h4>
+        <p>Product: Advanced Ambrotose</p>
+        <p>Mannatech has completely transformed my life! The products have given me more energy and vitality than ever before.</p>
+        <small>Written Testimonial</small>
+        <button class="delete-btn" style="display: none;">Delete</button>
+        <div class="password-input" style="display: none;">
+          <input type="password" class="delete-password" placeholder="Enter password">
+          <button class="confirm-delete">Confirm</button>
+          <button class="cancel-delete">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const testimonialType = document.getElementById('testimonialType');
+  const textInput = document.getElementById('textInput');
+  const mediaInput = document.getElementById('mediaInput');
+  const mediaFile = document.getElementById('mediaFile');
+  const preview = document.getElementById('preview');
+  const form = document.getElementById('testimonialForm');
+  const testimonialGrid = document.getElementById('testimonialGrid');
+  
+  // Navigation
+  const navButtons = document.querySelectorAll('.nav-btn');
+  const sections = {
+    upload: document.getElementById('uploadSection'),
+    view: document.getElementById('viewSection')
+  };
+
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const sectionName = e.target.dataset.section;
+      
+      // Update button states
+      navButtons.forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      
+      // Show/hide sections
+      Object.values(sections).forEach(section => {
+        section.classList.remove('section-active');
+      });
+      sections[sectionName].classList.add('section-active');
+    });
+  });
+
+  testimonialType.addEventListener('change', (e) => {
+    if (e.target.value === 'text') {
+      textInput.style.display = 'block';
+      mediaInput.style.display = 'none';
+    } else {
+      textInput.style.display = 'none';
+      mediaInput.style.display = 'block';
+    }
+  });
+  
+  mediaFile.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    if (file.type.startsWith('video/')) {
+      const video = document.createElement('video');
+      video.src = URL.createObjectURL(file);
+      video.controls = true;
+      video.style.maxWidth = '100%';
+      preview.innerHTML = '';
+      preview.appendChild(video);
+    } else if (file.type.startsWith('audio/')) {
+      const audio = document.createElement('audio');
+      audio.src = URL.createObjectURL(file);
+      audio.controls = true;
+      preview.innerHTML = '';
+      preview.appendChild(audio);
+    }
+  });
+  
+  const createCard = (name, product, content, type) => {
+    const card = document.createElement('div');
+    card.className = 'testimonial-card';
+    card.innerHTML = `
+      <h4>${name}</h4>
+      <p>Product: ${product}</p>
+      <p>${content}</p>
+      <small>${type.charAt(0).toUpperCase() + type.slice(1)} Testimonial</small>
+      <button class="delete-btn" style="display: none;">Delete</button>
+      <div class="password-input" style="display: none;">
+        <input type="password" class="delete-password" placeholder="Enter password">
+        <button class="confirm-delete">Confirm</button>
+        <button class="cancel-delete">Cancel</button>
+      </div>
+    `;
+    return card;
+  };
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const type = testimonialType.value;
+    const product = document.getElementById('product').value;
+    let content = '';
+    
+    if (type === 'text') {
+      content = document.getElementById('written').value;
+    } else {
+      content = 'Media testimonial';
+    }
+    
+    const card = createCard(name, product, content, type);
+    
+    if (type !== 'text') {
+      const mediaElement = preview.children[0].cloneNode(true);
+      card.insertBefore(mediaElement, card.querySelector('.delete-btn'));
+    }
+    
+    testimonialGrid.insertBefore(card, testimonialGrid.firstChild);
+    form.reset();
+    preview.innerHTML = '';
+    
+    // Switch to view section after submission
+    navButtons[1].click();
+  });
+
+  // Delete functionality
+  const toggleDelete = document.querySelector('.toggle-delete');
+  
+  toggleDelete.addEventListener('click', () => {
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+    deleteButtons.forEach(btn => {
+      btn.style.display = btn.style.display === 'none' ? 'block' : 'none';
+    });
+  });
+
+  // Delegate event listener for delete buttons
+  testimonialGrid.addEventListener('click', (e) => {
+    if (e.target.classList.contains('delete-btn')) {
+      const card = e.target.closest('.testimonial-card');
+      const passwordInput = card.querySelector('.password-input');
+      e.target.style.display = 'none';
+      passwordInput.style.display = 'flex';
+    }
+    
+    if (e.target.classList.contains('confirm-delete')) {
+      const card = e.target.closest('.testimonial-card');
+      const password = card.querySelector('.delete-password').value;
+      
+      if (password === '9951') {
+        card.remove();
+      } else {
+        alert('Incorrect password');
+      }
+    }
+    
+    if (e.target.classList.contains('cancel-delete')) {
+      const card = e.target.closest('.testimonial-card');
+      const deleteBtn = card.querySelector('.delete-btn');
+      const passwordInput = card.querySelector('.password-input');
+      deleteBtn.style.display = 'block';
+      passwordInput.style.display = 'none';
+      card.querySelector('.delete-password').value = '';
+    }
+  });
+
+  const productFilter = document.getElementById('productFilter');
+
+  productFilter.addEventListener('change', (e) => {
+    const selectedProduct = e.target.value;
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    
+    testimonialCards.forEach(card => {
+      const productText = card.querySelector('p').textContent;
+      if (!selectedProduct || productText.includes(selectedProduct)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+
+</body></html>
